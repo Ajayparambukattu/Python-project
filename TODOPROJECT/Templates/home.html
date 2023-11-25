@@ -1,0 +1,65 @@
+
+<!--#####-->
+{% extends 'base.html' %}
+{% block body %}
+
+ <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-lg-9 col-xl-7">
+        <div class="card rounded-3">
+          <div class="card-body p-4">
+
+            <h4 class="y" class="text-center my-3 pb-3">To Do App</h4>
+
+            <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" method="POST">
+                 {% csrf_token %}
+              <div class="col-12">
+                <div class="form-outline">
+                  <input type="text" id="form1" name="name" class="form-control" />
+                  <label class="form-label" for="form1">Enter Your task here</label>
+                    <input type="text" id="form2" class="form-control" name="priority" />
+                    <label class="form-label"  for="form1">Enter your priority</label>
+                     <input type="date" id="form3" class="form-control" name="date" />
+                    <label class="form-label"  for="form1">Enter your date</label>
+
+                </div>
+              </div>
+
+              <div class="col-12">
+                <input type="submit" class="btn btn-success">
+              </div>
+            </form>
+
+            <table class="table mb-4">
+
+              <thead>
+                <tr>
+                  <th scope="col">Todo item</th>
+                  <th scope="col">Priority</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for h in task %}
+                <tr>
+                  <td>{{h.name}}</td>
+                  <td>{{h.priority}}<br></td>
+                    <td>{{h.date}}<br></td>
+                  <td>
+                   <a href="{% url 'TODOAPP:delete' h.id %}" class="btn btn-danger"> Delete</a>
+                    <a href="{% url 'TODOAPP:update' h.id %}" class="btn btn-success"> Update</a>
+                  </td>
+
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+<form method="post" style="color:white;">
+  {% csrf_token %}
+  {{zx.as_p}}
+  <input type="submit">
+
+</form>
+{% endblock %}
